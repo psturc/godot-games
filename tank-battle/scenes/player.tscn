@@ -1,0 +1,35 @@
+[gd_scene load_steps=4 format=3 uid="uid://cdgks8sx207iw"]
+
+[ext_resource type="Texture2D" uid="uid://c1otns3h6q237" path="res://assets/allSprites_retina.png" id="1_3vyb7"]
+[ext_resource type="Script" uid="uid://8dnarlrg5bdc" path="res://scripts/player.gd" id="1_g2els"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_c4xvs"]
+size = Vector2(72, 82)
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_g2els")
+metadata/_edit_group_ = true
+
+[node name="Body" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("1_3vyb7")
+region_enabled = true
+region_rect = Rect2(290, 101, 73, 76)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_c4xvs")
+
+[node name="Turret" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("1_3vyb7")
+offset = Vector2(20, 0)
+region_enabled = true
+region_rect = Rect2(898, 14, 59, 24)
+
+[node name="Muzzle" type="Marker2D" parent="Turret"]
+position = Vector2(55, 0)
+
+[node name="Shoot_cooldown" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="Shoot_cooldown" to="." method="_on_shoot_cooldown_timeout"]

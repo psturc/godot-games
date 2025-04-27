@@ -1,0 +1,62 @@
+[gd_scene load_steps=10 format=3 uid="uid://cxfakbblmbqh5"]
+
+[ext_resource type="Script" uid="uid://u43wymyneq8g" path="res://scripts/player.gd" id="1_1vccp"]
+[ext_resource type="Texture2D" uid="uid://e5nn4jku4gt3" path="res://assets/textures/player_ship.png" id="1_263yq"]
+[ext_resource type="AudioStream" uid="uid://btwe04dtqsoqy" path="res://assets/audio/sfx_laser2.wav" id="3_gevjh"]
+
+[sub_resource type="Gradient" id="Gradient_yb8qa"]
+offsets = PackedFloat32Array(0, 0.397924, 1)
+colors = PackedColorArray(0.882353, 0.682353, 0, 0, 0.929168, 0.467006, 0.0202863, 1, 1, 0.141176, 0.0509804, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_x2txj"]
+gradient = SubResource("Gradient_yb8qa")
+
+[sub_resource type="Curve" id="Curve_e5ocr"]
+_data = [Vector2(0.021875, 0.172727), 0.0, 0.0, 0, 0, Vector2(1, 0.690909), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_0ruv8"]
+curve = SubResource("Curve_e5ocr")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_bc2ac"]
+lifetime_randomness = 0.32
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(0, 5, 1)
+direction = Vector3(0, 0, 0)
+spread = 35.59
+initial_velocity_min = -200.0
+gravity = Vector3(0, 0, 0)
+scale_min = 10.0
+scale_max = 10.0
+scale_curve = SubResource("CurveTexture_0ruv8")
+color_ramp = SubResource("GradientTexture1D_x2txj")
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_iqrje"]
+height = 98.0
+
+[node name="Player" type="CharacterBody2D"]
+collision_mask = 2
+motion_mode = 1
+script = ExtResource("1_1vccp")
+
+[node name="EngineFlameParticles" type="GPUParticles2D" parent="."]
+position = Vector2(-38, 0)
+amount = 1000
+lifetime = 0.5
+process_material = SubResource("ParticleProcessMaterial_bc2ac")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+rotation = 1.5708
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("1_263yq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(8, 0)
+scale = Vector2(1.48, 1)
+shape = SubResource("CapsuleShape2D_iqrje")
+
+[node name="RocketContainer" type="Node" parent="."]
+
+[node name="RocketShotSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_gevjh")

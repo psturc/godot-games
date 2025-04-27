@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://bmd08o28onxks"]
+
+[ext_resource type="Script" uid="uid://1d3d76xuv4v2" path="res://scripts/path_follow_2d.gd" id="1_k5nrg"]
+[ext_resource type="PackedScene" uid="uid://83aetjgepw46" path="res://scenes/enemy_tank.tscn" id="1_lk2tg"]
+
+[sub_resource type="Curve2D" id="Curve2D_yqjtg"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 1220, -46, 0.909091, -3.63636, -0.909091, 3.63636, 1213, 92, 28.3471, -4.38017, -28.3471, 4.38017, 1190, 187, 0, 0, 0, 0, 1051, 193, -5.45455, 0, 5.45455, 0, 837, 189, 0, 0, 0, 0, 678, 188, 35.124, -5.12397, -35.124, 5.12397, 598, 196, 0, 0, 0, 0, 572, 312, 0, 0, 0, 0, 572, 382, 33.4711, -7.35537, -33.4711, 7.35537, 547, 444, 33.122, -8.86364, -33.122, 8.86364, 221, 450, 0, 0, 0, 0, 188, 523, 0, 0, 0, 0, 190, 686)
+}
+point_count = 13
+
+[node name="EnemyTankPath" type="Path2D"]
+curve = SubResource("Curve2D_yqjtg")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="."]
+position = Vector2(1220, -46)
+rotation = 1.62148
+script = ExtResource("1_k5nrg")
+
+[node name="EnemyTank" parent="PathFollow2D" instance=ExtResource("1_lk2tg")]

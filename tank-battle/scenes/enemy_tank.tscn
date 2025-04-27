@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://83aetjgepw46"]
+
+[ext_resource type="Texture2D" uid="uid://c1otns3h6q237" path="res://assets/allSprites_retina.png" id="1_shm6i"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qrlly"]
+size = Vector2(91, 76)
+
+[node name="EnemyTank" type="Area2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, -1)
+shape = SubResource("RectangleShape2D_qrlly")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_shm6i")
+region_enabled = true
+region_rect = Rect2(0, 101, 92, 76)
