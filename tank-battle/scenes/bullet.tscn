@@ -1,17 +1,24 @@
-[gd_scene load_steps=3 format=3 uid="uid://dbsqmgokd7qlv"]
+[gd_scene load_steps=4 format=3 uid="uid://dbsqmgokd7qlv"]
 
 [ext_resource type="Texture2D" uid="uid://c1otns3h6q237" path="res://assets/allSprites_retina.png" id="1_mkf8s"]
+[ext_resource type="Script" uid="uid://end1ncm35pj1" path="res://scripts/bullet.gd" id="1_y25gk"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_y25gk"]
 size = Vector2(37, 16)
 
 [node name="Bullet" type="Area2D"]
+script = ExtResource("1_y25gk")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-0.5, 0)
 shape = SubResource("RectangleShape2D_y25gk")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+rotation = 3.14159
 texture = ExtResource("1_mkf8s")
 region_enabled = true
 region_rect = Rect2(492, 2, 36, 16)
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

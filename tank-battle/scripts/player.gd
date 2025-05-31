@@ -1,8 +1,6 @@
-extends CharacterBody2D
+extends "res://scripts/tank.gd"
 
-
-@export var speed: int = 200
-@export var rotation_speed: float = 2
+@onready var bullet_scene = preload("res://scenes/bullet.tscn")
 
 var can_shoot: bool = true
 
@@ -20,14 +18,20 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("shoot") && can_shoot:
 		print("shooting")
 		can_shoot = false
-		$Shoot_cooldown.start()
+		$GunTimer.start()
+		shoot()
 
 	$Turret.look_at(get_global_mouse_position())
 	
 	move_and_slide()
 
+func shoot():
+	var bullet_instance = bullet_scene.instantiate()
+	$BulletContainer.add_child(bullet_instance)
+	
+	bullet_instance.global_position = $Turret/Muzzle.global_position
+	bullet_instance.direction = (get_global_mouse_position() - $Turret/Muzzle.global_position).normalized()
+	bullet_instance.rotation = bullet_instance.direction.angle()
 
-
-
-func _on_shoot_cooldown_timeout() -> void:
+func _on_gun_timer_timeout() -> void:
 	can_shoot = true
