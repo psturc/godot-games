@@ -1,0 +1,36 @@
+[gd_scene load_steps=7 format=3 uid="uid://djgqs41ttaluv"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_iyprm"]
+
+[sub_resource type="Gradient" id="Gradient_iyprm"]
+offsets = PackedFloat32Array(0.454545, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_wb2ui"]
+gradient = SubResource("Gradient_iyprm")
+
+[sub_resource type="Curve" id="Curve_2m873"]
+_data = [Vector2(0, 0.894309), 0.0, 0.0, 0, 0, Vector2(0.638686, 0.573171), 0.0, 0.0, 0, 0, Vector2(0.963504, 0.703252), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_yg2gi"]
+curve = SubResource("Curve_2m873")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_iyprm"]
+lifetime_randomness = 1.0
+direction = Vector3(0, -1, 0)
+spread = 80.0
+initial_velocity_max = 500.0
+gravity = Vector3(0, 0, 0)
+scale_max = 20.0
+scale_curve = SubResource("CurveTexture_yg2gi")
+color_initial_ramp = SubResource("GradientTexture1D_wb2ui")
+
+[node name="TankParticle" type="GPUParticles2D"]
+self_modulate = Color(0.052007, 0.61114, 0.0485936, 1)
+material = SubResource("CanvasItemMaterial_iyprm")
+emitting = false
+amount = 300
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_iyprm")

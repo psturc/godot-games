@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://btp3h3wk75adv"
+path="res://.godot/imported/Clement Panchout _ The Sicko Gecko.wav-fb83c5c507f1c64fba3037ecca41e26b.sample"
+
+[deps]
+
+source_file="res://assets/Clement Panchout _ The Sicko Gecko.wav"
+dest_files=["res://.godot/imported/Clement Panchout _ The Sicko Gecko.wav-fb83c5c507f1c64fba3037ecca41e26b.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

@@ -1,0 +1,44 @@
+[gd_scene load_steps=7 format=3 uid="uid://cfjf463q570dn"]
+
+[ext_resource type="Script" uid="uid://k3bcxkq4qcrc" path="res://scripts/tank.gd" id="1_c4xvs"]
+[ext_resource type="Texture2D" uid="uid://nquiti2bxepd" path="res://assets/onlyObjects_retina_rotated.png" id="1_qrxud"]
+[ext_resource type="PackedScene" uid="uid://djgqs41ttaluv" path="res://scenes/tank_particle.tscn" id="2_lj6hj"]
+[ext_resource type="AudioStream" uid="uid://bgqaq152pq802" path="res://assets/heavy_canon.ogg" id="3_01nm4"]
+[ext_resource type="AudioStream" uid="uid://fp7s4dc40p4y" path="res://assets/engine_heavy_loop.ogg" id="4_k4vtj"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qrxud"]
+size = Vector2(82, 84)
+
+[node name="Tank" type="CharacterBody2D"]
+script = ExtResource("1_c4xvs")
+deathParticle = ExtResource("2_lj6hj")
+
+[node name="Body" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("1_qrxud")
+region_enabled = true
+region_rect = Rect2(308, 262, 80, 84)
+
+[node name="Gun" type="Sprite2D" parent="."]
+texture = ExtResource("1_qrxud")
+offset = Vector2(20, 0)
+region_enabled = true
+region_rect = Rect2(685, 15, 58, 22)
+
+[node name="Muzzle" type="Marker2D" parent="Gun"]
+position = Vector2(80, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_qrxud")
+
+[node name="GunTimer" type="Timer" parent="."]
+
+[node name="BulletContainer" type="Node" parent="."]
+
+[node name="ShootSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_01nm4")
+
+[node name="MovementSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_k4vtj")
+
+[connection signal="timeout" from="GunTimer" to="." method="_on_gun_timer_timeout"]

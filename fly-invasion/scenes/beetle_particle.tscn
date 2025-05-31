@@ -1,0 +1,41 @@
+[gd_scene load_steps=7 format=3 uid="uid://bgjbgkqguuaek"]
+
+[sub_resource type="Curve" id="Curve_7qyyg"]
+_limits = [-360.0, 360.0, 0.0, 1.0]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.751825, 213.659), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_qy3m3"]
+curve = SubResource("Curve_7qyyg")
+
+[sub_resource type="CurveXYZTexture" id="CurveXYZTexture_8xsjx"]
+
+[sub_resource type="Curve" id="Curve_jkrc6"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.821168, 0.333333), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_d5uh4"]
+curve = SubResource("Curve_jkrc6")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_e5owx"]
+lifetime_randomness = 0.5
+particle_flag_disable_z = true
+spread = 180.0
+initial_velocity_min = 500.0
+initial_velocity_max = 500.0
+angular_velocity_curve = SubResource("CurveTexture_qy3m3")
+directional_velocity_min = 1.0
+directional_velocity_max = 1.0
+directional_velocity_curve = SubResource("CurveXYZTexture_8xsjx")
+gravity = Vector3(0, 0, 0)
+scale_min = 3.0
+scale_max = 10.48
+scale_curve = SubResource("CurveTexture_d5uh4")
+
+[node name="BeetleParticle" type="GPUParticles2D"]
+emitting = false
+amount = 50
+lifetime = 0.26
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_e5owx")
