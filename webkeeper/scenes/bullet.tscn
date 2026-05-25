@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://desjfjwf7ikr2"]
+
+[ext_resource type="Script" uid="uid://chshepcpd7p56" path="res://scripts/bullet.gd" id="1_mkf8s"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mkf8s"]
+
+[node name="Bullet" type="Area2D" unique_id=1826466651]
+script = ExtResource("1_mkf8s")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1773290004]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1902453165]
+shape = SubResource("RectangleShape2D_mkf8s")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=1307554332]

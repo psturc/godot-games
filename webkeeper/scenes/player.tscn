@@ -131,10 +131,26 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ke2ow"]
+
 [node name="Player" type="CharacterBody2D" unique_id=1114968983]
 scale = Vector2(4, 4)
 script = ExtResource("1_ke2ow")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1040524207]
+[node name="Body" type="AnimatedSprite2D" parent="." unique_id=1040524207]
 sprite_frames = SubResource("SpriteFrames_smehm")
 animation = &"idle_right"
+
+[node name="Gun" type="Sprite2D" parent="." unique_id=1300799573]
+
+[node name="Marker2D" type="Marker2D" parent="Gun" unique_id=434533434]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1187305963]
+scale = Vector2(0.8, 0.8)
+shape = SubResource("RectangleShape2D_ke2ow")
+
+[node name="BulletContainer" type="Node" parent="." unique_id=1345573320]
+
+[node name="GunTimer" type="Timer" parent="." unique_id=815805828]
+
+[connection signal="timeout" from="GunTimer" to="." method="_on_gun_timer_timeout"]
