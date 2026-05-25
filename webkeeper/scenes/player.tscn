@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://cwcfnvxcwks5j"]
 
 [ext_resource type="Texture2D" uid="uid://nws35j13rpja" path="res://assets/images/player/IdlePurple/SpiderIdleSide1.png" id="1_dqkch"]
+[ext_resource type="Script" uid="uid://bq4iu4uibtwyo" path="res://scripts/player.gd" id="1_ke2ow"]
 [ext_resource type="Texture2D" uid="uid://i65itgdalwe5" path="res://assets/images/player/IdlePurple/SpiderIdleFront1.png" id="1_l71n6"]
 [ext_resource type="Texture2D" uid="uid://biglejpgyqi7e" path="res://assets/images/player/IdlePurple/SpiderIdleFront2.png" id="2_ke2ow"]
 [ext_resource type="Texture2D" uid="uid://0jcd3kopaurb" path="res://assets/images/player/IdlePurple/SpiderIdleSide2.png" id="2_qlg0r"]
@@ -131,7 +132,9 @@ animations = [{
 }]
 
 [node name="Player" type="CharacterBody2D" unique_id=1114968983]
+scale = Vector2(4, 4)
+script = ExtResource("1_ke2ow")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1040524207]
 sprite_frames = SubResource("SpriteFrames_smehm")
-animation = &"idle_up"
+animation = &"idle_right"
